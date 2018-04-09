@@ -1,1 +1,5 @@
 # This file contains recursive sources that require this package
+R-callr
+R-reprex
+R-reticulate
+R-tidyverse
