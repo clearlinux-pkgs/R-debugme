@@ -4,16 +4,22 @@
 #
 Name     : R-debugme
 Version  : 1.1.0
-Release  : 14
+Release  : 15
 URL      : https://cran.r-project.org/src/contrib/debugme_1.1.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/debugme_1.1.0.tar.gz
 Summary  : Debug R Packages
 Group    : Development/Tools
 License  : MIT
-BuildRequires : clr-R-helpers
+BuildRequires : buildreq-R
 
 %description
-control debugging of packages via environment variables.
+# debugme
+> Debug R Packages
+[![Linux Build Status](https://travis-ci.org/r-lib/debugme.svg?branch=master)](https://travis-ci.org/r-lib/debugme)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/debugme?svg=true)](https://ci.appveyor.com/project/gaborcsardi/debugme)
+[![](http://www.r-pkg.org/badges/version/debugme)](http://www.r-pkg.org/pkg/debugme)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/debugme)](http://www.r-pkg.org/pkg/debugme)
+[![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/debugme/master.svg)](https://codecov.io/github/r-lib/debugme?branch=master)
 
 %prep
 %setup -q -c -n debugme
@@ -23,11 +29,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523298985
+export SOURCE_DATE_EPOCH=1552749444
 
 %install
+export SOURCE_DATE_EPOCH=1552749444
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1523298985
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -62,8 +68,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library debugme|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  debugme || :
 
 
 %files
@@ -92,3 +97,9 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/debugme/html/00Index.html
 /usr/lib64/R/library/debugme/html/R.css
 /usr/lib64/R/library/debugme/screencast.gif
+/usr/lib64/R/library/debugme/tests/testthat.R
+/usr/lib64/R/library/debugme/tests/testthat/test-colors.R
+/usr/lib64/R/library/debugme/tests/testthat/test-debug.R
+/usr/lib64/R/library/debugme/tests/testthat/test-dynamic.R
+/usr/lib64/R/library/debugme/tests/testthat/test-instrument.R
+/usr/lib64/R/library/debugme/tests/testthat/test-package.R
