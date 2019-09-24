@@ -4,22 +4,18 @@
 #
 Name     : R-debugme
 Version  : 1.1.0
-Release  : 20
+Release  : 21
 URL      : https://cran.r-project.org/src/contrib/debugme_1.1.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/debugme_1.1.0.tar.gz
 Summary  : Debug R Packages
 Group    : Development/Tools
 License  : MIT
+Requires: R-crayon
+BuildRequires : R-crayon
 BuildRequires : buildreq-R
 
 %description
-# debugme
-> Debug R Packages
-[![Linux Build Status](https://travis-ci.org/r-lib/debugme.svg?branch=master)](https://travis-ci.org/r-lib/debugme)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/debugme?svg=true)](https://ci.appveyor.com/project/gaborcsardi/debugme)
-[![](http://www.r-pkg.org/badges/version/debugme)](http://www.r-pkg.org/pkg/debugme)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/debugme)](http://www.r-pkg.org/pkg/debugme)
-[![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/debugme/master.svg)](https://codecov.io/github/r-lib/debugme?branch=master)
+control debugging of packages via environment variables.
 
 %prep
 %setup -q -c -n debugme
@@ -28,13 +24,13 @@ BuildRequires : buildreq-R
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552749444
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569286569
 
 %install
-export SOURCE_DATE_EPOCH=1552749444
+export SOURCE_DATE_EPOCH=1569286569
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -63,12 +59,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  debugme || :
+R CMD check --no-manual --no-examples --no-codoc debugme || :
 
 
 %files
