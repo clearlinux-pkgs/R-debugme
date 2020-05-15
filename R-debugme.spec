@@ -4,7 +4,7 @@
 #
 Name     : R-debugme
 Version  : 1.1.0
-Release  : 25
+Release  : 26
 URL      : https://cran.r-project.org/src/contrib/debugme_1.1.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/debugme_1.1.0.tar.gz
 Summary  : Debug R Packages
@@ -13,34 +13,28 @@ License  : MIT
 Requires: R-crayon
 BuildRequires : R-crayon
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
-# debugme
-> Debug R Packages
-[![Linux Build Status](https://travis-ci.org/r-lib/debugme.svg?branch=master)](https://travis-ci.org/r-lib/debugme)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/debugme?svg=true)](https://ci.appveyor.com/project/gaborcsardi/debugme)
-[![](http://www.r-pkg.org/badges/version/debugme)](http://www.r-pkg.org/pkg/debugme)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/debugme)](http://www.r-pkg.org/pkg/debugme)
-[![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/debugme/master.svg)](https://codecov.io/github/r-lib/debugme?branch=master)
+control debugging of packages via environment variables.
 
 %prep
 %setup -q -c -n debugme
+cd %{_builddir}/debugme
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571816740
+export SOURCE_DATE_EPOCH=1589530057
 
 %install
-export SOURCE_DATE_EPOCH=1571816740
+export SOURCE_DATE_EPOCH=1589530057
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
