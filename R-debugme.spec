@@ -4,7 +4,7 @@
 #
 Name     : R-debugme
 Version  : 1.1.0
-Release  : 44
+Release  : 45
 URL      : https://cran.r-project.org/src/contrib/debugme_1.1.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/debugme_1.1.0.tar.gz
 Summary  : Debug R Packages
